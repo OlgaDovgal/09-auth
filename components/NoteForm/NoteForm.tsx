@@ -3,10 +3,11 @@ import css from "./NoteForm.module.css";
 import * as Yup from "yup";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
-import { createNote } from "@/lib/api";
+
 import { CreateNoteFormValues } from "@/types/note";
 import { useRouter } from "next/navigation";
 import { useNoteDraftStore } from "@/lib/store/noteStore";
+import { createNote } from "@/lib/api/clientApi";
 
 const Schema = Yup.object().shape({
   title: Yup.string()
