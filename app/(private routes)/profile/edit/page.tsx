@@ -12,8 +12,9 @@ const EditProfile = () => {
   const setUser = useAuthStore((state) => state.setUser);
   const [error, setError] = useState("");
   const [username, setUsername] = useState(user?.username ?? "");
-  const handleSaveUser = async () => {
+  const handleSaveUser = async (e: React.FormEvent<HTMLFormElement>) => {
     try {
+      e.preventDefault();
       const updateUser = await updateMe({
         username,
       });

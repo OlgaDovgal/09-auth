@@ -23,6 +23,13 @@ const NotePreviewClient = () => {
       {isLoading && <p>Loading, please wait...</p>}
       {note && (
         <Modal onClose={() => router.back()}>
+          <button
+            type="button"
+            className={css.backBtn}
+            onClick={() => router.back()}
+          >
+            x
+          </button>
           <div className={css.container}>
             <div className={css.item}>
               <div className={css.header}>

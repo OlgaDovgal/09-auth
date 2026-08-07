@@ -40,18 +40,26 @@ export const fetchNoteById = async (postId: string) => {
 };
 export const checkServerSession = async () => {
   const cookieStore = await cookies();
+  const cookieHeader = cookieStore
+    .getAll()
+    .map(({ name, value }) => `${name}=${value}`)
+    .join("; ");
   const res = await api.get("/auth/session", {
     headers: {
-      Cookie: cookieStore.toString(),
+      Cookie: cookieHeader,
     },
   });
   return res;
 };
 export const getServerMe = async (): Promise<User> => {
   const cookieStore = await cookies();
+  const cookieHeader = cookieStore
+    .getAll()
+    .map(({ name, value }) => `${name}=${value}`)
+    .join("; ");
   const res = await api.get<User>("/users/me", {
     headers: {
-      Cookie: cookieStore.toString(),
+      Cookie: cookieHeader,
     },
   });
   return res.data;

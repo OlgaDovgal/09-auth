@@ -5,7 +5,7 @@ import { useAuthStore } from "@/lib/store/authStore";
 import { useRouter } from "next/navigation";
 import { logout } from "@/lib/api/clientApi";
 const AuthNavigation = () => {
-  const { isAuthenticated } = useAuthStore();
+  const { isAuthenticated, user } = useAuthStore();
   const router = useRouter();
   const clearIsAuthenticated = useAuthStore(
     (state) => state.clearIsAuthenticated,
@@ -24,7 +24,7 @@ const AuthNavigation = () => {
       </li>
 
       <li className={css.navigationItem}>
-        <p className={css.userEmail}>User email</p>
+        <p className={css.userEmail}>{user?.email}</p>
         <button className={css.logoutButton} onClick={handleLogout}>
           Logout
         </button>

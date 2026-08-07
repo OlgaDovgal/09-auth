@@ -8,13 +8,12 @@ import css from "./Notes.page.module.css";
 import SearchBox from "@/components/SearchBox/SearchBox";
 import Pagination from "@/components/Pagination/Pagination";
 import NoteList from "@/components/NoteList/NoteList";
-import { useRouter } from "next/navigation";
 import { fetchNotes } from "@/lib/api/clientApi";
+import Link from "next/link";
 interface NotesClientProps {
   tag?: string;
 }
 const NotesClient = ({ tag }: NotesClientProps) => {
-  const router = useRouter();
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState("");
   const { data, isSuccess } = useQuery({
@@ -40,12 +39,9 @@ const NotesClient = ({ tag }: NotesClientProps) => {
             onPageChange={setPage}
           />
         )}
-        <button
-          className={css.button}
-          onClick={() => router.push("/notes/action/create")}
-        >
+        <Link href="/notes/action/create" className={css.button}>
           Create note +
-        </button>
+        </Link>
       </header>
       {notes.length > 0 && <NoteList notes={notes} />}
       <Toaster />
