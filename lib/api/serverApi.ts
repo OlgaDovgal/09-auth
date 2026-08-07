@@ -1,7 +1,11 @@
 import { cookies } from "next/headers";
 import { api } from "./api";
 import { User } from "@/types/user";
+import { AxiosResponse } from "axios";
 
+type RefreshSessionResponse = {
+  message: string;
+};
 export const fetchNotes = async (
   page: number,
   search: string,
@@ -38,7 +42,9 @@ export const fetchNoteById = async (postId: string) => {
   });
   return data;
 };
-export const checkServerSession = async () => {
+export const checkServerSession = async (): Promise<
+  AxiosResponse<RefreshSessionResponse>
+> => {
   const cookieStore = await cookies();
   const cookieHeader = cookieStore
     .getAll()
