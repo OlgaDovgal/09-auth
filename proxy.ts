@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { checkServerSession } from "./lib/api/serverApi";
 import { parseSetCookie } from "cookie";
 const privateRoutes = ["/profile", "/notes"];
-const publicRoutes = ["/sign-in", "/sign-up", "/"];
+const publicRoutes = ["/sign-in", "/sign-up"];
 export async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const cookieStore = await cookies();
@@ -56,7 +56,8 @@ export async function proxy(request: NextRequest) {
   if (isPublicRoute) {
     return NextResponse.redirect(new URL("/", request.url));
   }
+  return NextResponse.next();
 }
 export const config = {
-  matcher: ["/profile/:path*", "/sign-in", "/sign-up", "/notes/:path*"],
+  matcher: ["/", "/profile/:path*", "/sign-in", "/sign-up", "/notes/:path*"],
 };
