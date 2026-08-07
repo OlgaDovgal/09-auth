@@ -1,4 +1,5 @@
 import css from "./Home.module.css";
+export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <main className={css.main}>
