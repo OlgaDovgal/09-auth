@@ -21,14 +21,14 @@ export const metadata: Metadata = {
     ],
   },
 };
-export const Profile = async () => {
+const Profile = async () => {
   const user = await getServerMe();
   return (
     <main className={css.mainContent}>
       <div className={css.profileCard}>
         <div className={css.header}>
           <h1 className={css.formTitle}>Profile Page</h1>
-          <Link src="/profile/edit" className={css.editProfileButton}>
+          <Link href="/profile/edit" className={css.editProfileButton}>
             Edit Profile
           </Link>
         </div>
@@ -49,3 +49,4 @@ export const Profile = async () => {
     </main>
   );
 };
+export default Profile;
