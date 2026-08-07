@@ -6,7 +6,7 @@ import { useState } from "react";
 import { updateMe } from "@/lib/api/clientApi";
 import { useRouter } from "next/navigation";
 import { AxiosError } from "axios";
-export const EditProfile = () => {
+const EditProfile = () => {
   const router = useRouter();
   const user = useAuthStore((state) => state.user);
   const setUser = useAuthStore((state) => state.setUser);
@@ -72,3 +72,4 @@ export const EditProfile = () => {
     </main>
   );
 };
+export default EditProfile;
